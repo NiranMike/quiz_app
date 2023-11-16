@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Category{
+  id String @id @default(uuid()) @map("_id")
+  name String
+  questions Question[]
+}
+
+model Question{
+  id String @id @default(uuid()) @map("_id")
+  content String
+
+  answer String
+  options String[]
+
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  @@index([categoryId])
+
+}
