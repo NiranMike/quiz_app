@@ -12,7 +12,7 @@ const Hero = async () => {
           {categories?.map((category) => {
               return (
                 <div key={category.id}>
-                    <Categories name={category.name} />
+                    <Categories image={category.image} id={category.id} name={category.name} />
                 </div>
             )
         })}

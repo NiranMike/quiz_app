@@ -14,15 +14,16 @@ datasource db {
 model Category{
   id String @id @default(uuid()) @map("_id")
   name String
+  image String
   questions Question[]
 }
 
 model Question{
   id String @id @default(uuid()) @map("_id")
   content String
-
   answer String
   options String[]
+  hint String
 
   category Category @relation(fields: [categoryId], references: [id])
   categoryId String
